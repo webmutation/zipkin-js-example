@@ -1,9 +1,7 @@
 /* eslint-env browser */
-const {
-  BatchRecorder,
-  jsonEncoder: {JSON_V2}
-} = require('zipkin');
-const {HttpLogger} = require('zipkin-transport-http');
+import zipkin from 'zipkin';
+const { BatchRecorder, jsonEncoder: { JSON_V2 } } = zipkin;
+import { HttpLogger } from 'zipkin-transport-http';
 
 // Send spans to Zipkin asynchronously over HTTP
 const zipkinBaseUrl = 'http://localhost:9411';
@@ -14,4 +12,5 @@ const recorder = new BatchRecorder({
   })
 });
 
-module.exports.recorder = recorder;
+const _recorder = recorder;
+export { _recorder as recorder };

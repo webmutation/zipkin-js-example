@@ -1,10 +1,10 @@
 /* eslint-disable import/newline-after-import */
 // initialize tracer
-const rest = require('rest');
-const express = require('express');
-const CLSContext = require('zipkin-context-cls');
-const {Tracer} = require('zipkin');
-const {recorder} = require('./recorder');
+import { wrap } from 'rest';
+import express from 'express';
+import CLSContext from 'zipkin-context-cls';
+import { Tracer } from 'zipkin';
+import { recorder } from './recorder';
 
 const ctxImpl = new CLSContext('zipkin');
 const localServiceName = 'frontend';
@@ -13,12 +13,12 @@ const tracer = new Tracer({ctxImpl, recorder, localServiceName});
 const app = express();
 
 // instrument the server
-const zipkinMiddleware = require('zipkin-instrumentation-express').expressMiddleware;
+import { expressMiddleware as zipkinMiddleware } from 'zipkin-instrumentation-express';
 app.use(zipkinMiddleware({tracer}));
 
 // instrument the client
-const {restInterceptor} = require('zipkin-instrumentation-cujojs-rest');
-const zipkinRest = rest.wrap(restInterceptor, {tracer});
+import { restInterceptor } from 'zipkin-instrumentation-cujojs-rest';
+const zipkinRest = wrap(restInterceptor, {tracer});
 
 // Allow cross-origin, traced requests. See http://enable-cors.org/server_expressjs.html
 app.use((req, res, next) => {
