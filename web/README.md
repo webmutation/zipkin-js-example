@@ -1,6 +1,6 @@
 # Implementation Overview
 
-Web requests are served by [Express](http://expressjs.com/) controllers, and tracing is automatically performed for you by [zipkin-js](https://github.com/openzipkin/zipkin-js). JavaScript used in the web browser is bundled with [browserify](http://browserify.org/).
+Web requests are served by [Express](http://expressjs.com/) controllers, and tracing is automatically performed for you by [zipkin-js](https://github.com/openzipkin/zipkin-js). JavaScript used in the web browser is bundled with [parcel](https://parceljs.org/).
 
 # Running the example
 This example has two services: frontend and backend. They both report trace data to zipkin. To setup the demo, you need to start frontend.js, backend.js and Zipkin. You'll also need to bundle the JavaScript used by the web browser.
