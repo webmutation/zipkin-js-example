@@ -1,11 +1,3 @@
-# Basic example showing distributed tracing from a web browser across node.js apps
-This is an example app where a web browser and two express (node.js) services collaborate on an http request. Notably, timing of these requests are recorded into [Zipkin](http://zipkin.io/), a distributed tracing system. This allows you to see the how long the whole operation took, as well how much time was spent in each service.
-
-Here's an example of what it looks like
-<img width="972" alt="zipkin screen shot" src="https://cloud.githubusercontent.com/assets/64215/19316259/5a23bd0a-90d3-11e6-9034-c9c3cf26db28.png">
-
-This example was initially shown at [DevOpsDays Singapore on Oct 8, 2016](https://speakerdeck.com/adriancole/introduction-to-distributed-tracing-and-zipkin-at-devopsdays-singapore). It was ported from similar examples, such as [Spring Boot](https://github.com/openzipkin/sleuth-webmvc-example).
-
 # Implementation Overview
 
 Web requests are served by [Express](http://expressjs.com/) controllers, and tracing is automatically performed for you by [zipkin-js](https://github.com/openzipkin/zipkin-js). JavaScript used in the web browser is bundled with [browserify](http://browserify.org/).
@@ -29,7 +21,7 @@ $ npm install
 
 Once that's done, bundle the JavaScript used by the browser:
 ```bash
-$ npm run browserify
+$ parcel index.html
 ```
 
 ## Starting the Services
